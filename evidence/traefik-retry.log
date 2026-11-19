@@ -1,0 +1,8 @@
+Release "traefik" has been upgraded. Happy Helming!
+NAME: traefik
+NAMESPACE: ingress-system
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+NOTES:
+traefik with docker.io/traefik:v3.7.19 has been deployed successfully on ingress-system namespace!

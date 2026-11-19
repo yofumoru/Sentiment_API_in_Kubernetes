@@ -1,0 +1,5 @@
+! metallb is a 3rd party addon and is not maintained or verified by minikube maintainers, enable at your own risk.
+! metallb does not currently have an associated maintainer.
+  - Using image quay.io/metallb/speaker:v0.9.6
+  - Using image quay.io/metallb/controller:v0.9.6
+* The 'metallb' addon is enabled

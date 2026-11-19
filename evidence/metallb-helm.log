@@ -1,0 +1,12 @@
+MetalLB chart 0.16.2
+Release "metallb" does not exist. Installing it now.
+NAME: metallb
+NAMESPACE: metallb-system
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+MetalLB is now running in the cluster.
+
+Now you can configure it via its CRs. Please refer to the metallb official docs
+on how to use the CRs.

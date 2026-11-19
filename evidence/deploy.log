@@ -1,0 +1,30 @@
+namespace/sentiment created
+deployment.apps/sentiment created
+service/sentiment created
+service/sentiment-metrics created
+ingress.networking.k8s.io/sentiment created
+horizontalpodautoscaler.autoscaling/sentiment created
+Waiting for deployment "sentiment" rollout to finish: 0 of 3 updated replicas are available...
+Waiting for deployment "sentiment" rollout to finish: 1 of 3 updated replicas are available...
+Waiting for deployment "sentiment" rollout to finish: 2 of 3 updated replicas are available...
+deployment "sentiment" successfully rolled out
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES            SELECTOR
+deployment.apps/sentiment   3/3     3            3           15s   sentiment    sentiment:1.0.0   app=sentiment
+
+NAME                             READY   STATUS    RESTARTS   AGE   IP            NODE                NOMINATED NODE   READINESS GATES
+pod/sentiment-6f9cc7b7c8-2qgfz   1/1     Running   0          15s   10.244.1.4    sentiment-lab-m02   <none>           <none>
+pod/sentiment-6f9cc7b7c8-9shnh   1/1     Running   0          15s   10.244.0.10   sentiment-lab       <none>           <none>
+pod/sentiment-6f9cc7b7c8-jql6p   1/1     Running   0          15s   10.244.1.3    sentiment-lab-m02   <none>           <none>
+
+NAME                        TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE   SELECTOR
+service/sentiment           LoadBalancer   10.101.102.109   <pending>     80:30930/TCP   15s   app=sentiment
+service/sentiment-metrics   ClusterIP      10.105.225.149   <none>        8081/TCP       15s   app=sentiment
+
+NAME                                  CLASS     HOSTS            ADDRESS   PORTS   AGE
+ingress.networking.k8s.io/sentiment   traefik   sentiment.test             80      15s
+
+NAME                                            REFERENCE              TARGETS              MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/sentiment   Deployment/sentiment   cpu: <unknown>/60%   3         8         3          15s
+NAME                      ADDRESSTYPE   PORTS   ENDPOINTS                           AGE
+sentiment-metrics-nswhg   IPv4          8081    10.244.1.3,10.244.1.4,10.244.0.10   15s
+sentiment-wskjm           IPv4          8080    10.244.1.3,10.244.1.4,10.244.0.10   15s

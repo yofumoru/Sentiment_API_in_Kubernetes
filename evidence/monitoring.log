@@ -1,0 +1,16 @@
+kubectl -n monitoring get pods
+NAME                                                   READY   STATUS    RESTARTS   AGE
+prometheus-grafana-65b867bb4b-zgjfw                    3/3     Running   0          4m46s
+prometheus-kube-prometheus-operator-5986df5656-pxp2v   1/1     Running   0          4m46s
+prometheus-kube-state-metrics-cb5d78584-gfnck          1/1     Running   0          4m46s
+prometheus-prometheus-kube-prometheus-prometheus-0     2/2     Running   0          4m21s
+prometheus-prometheus-node-exporter-cwphk              1/1     Running   0          3m58s
+prometheus-prometheus-node-exporter-gcstv              1/1     Running   0          4m46s
+NAME        AGE
+sentiment   82s
+Prometheus pod=sentiment-6f9cc7b7c8-2qgfz up=1
+Prometheus pod=sentiment-6f9cc7b7c8-9shnh up=1
+Prometheus pod=sentiment-6f9cc7b7c8-jql6p up=1
+Grafana database=ok; version=13.3.1
+PASS: Prometheus targets and Grafana health
+Grafana CPU PromQL: 8 series

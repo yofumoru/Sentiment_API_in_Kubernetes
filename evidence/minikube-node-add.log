@@ -1,0 +1,7 @@
+* Adding node m02 to cluster sentiment-lab as [worker]
+* Starting "sentiment-lab-m02" worker node in "sentiment-lab" cluster
+* Downloading Kubernetes v1.37.0 preload ...
+! Failing to connect to https://registry.k8s.io/ from inside the minikube VM
+* To pull new external images, you may need to configure a proxy: https://minikube.sigs.k8s.io/docs/reference/networking/proxy/
+* Verifying Kubernetes components...
+* Successfully added m02 to sentiment-lab!

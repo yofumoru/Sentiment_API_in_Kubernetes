@@ -1,0 +1,17 @@
+kubectl get nodes
+NAME                STATUS   ROLES           AGE     VERSION
+sentiment-lab       Ready    control-plane   6m42s   v1.37.0
+sentiment-lab-m02   Ready    <none>          2m33s   v1.37.0
+sentiment-lab
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+
+sentiment-lab-m02
+type: Worker
+host: Running
+kubelet: Running
+
+v3.20.0+gb2e4314

@@ -1,0 +1,7 @@
+* [sentiment-lab] minikube v1.39.0 on Microsoft Windows 10 Pro 22H2
+  - KUBECONFIG=<PROJECT_ROOT>\.local\kubeconfig
+  - MINIKUBE_HOME=<PROJECT_ROOT>\.local
+* Automatically selected the virtualbox driver
+* Downloading VM boot image ...
+* Starting "sentiment-lab" primary control-plane node in "sentiment-lab" cluster
+* Downloading Kubernetes v1.37.0 preload ...

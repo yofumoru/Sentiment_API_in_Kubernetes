@@ -1,0 +1,15 @@
+GET /api/sentiment?text=hello -> 200 {"sentiment":"positive"}
+GET /api/sentiment?text=horrible -> 200 {"sentiment":"negative"}
+GET /api/sentiment?text=meeting -> 200 {"sentiment":"neutral"}
+GET /api/sentiment?text=отлично -> 200 {"sentiment":"positive"}
+GET /api/sentiment?text=ужасно -> 200 {"sentiment":"negative"}
+GET /api/sentiment?text=сегодня -> 200 {"sentiment":"neutral"}
+GET /api/sentiment?text=xyz -> 200 {"sentiment":"neutral"}
+GET /api/sentiment (missing) -> 400
+GET /api/sentiment (blank) -> 400
+GET /api/sentiment (oversized) -> 400
+GET /actuator/health/readiness -> {"status":"UP"}
+sentiment_predictions_total{label="negative"} 2.0
+sentiment_predictions_total{label="neutral"} 3.0
+sentiment_predictions_total{label="positive"} 2.0
+PASS: HTTP contract and Prometheus exposition

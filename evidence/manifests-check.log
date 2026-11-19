@@ -1,0 +1,15 @@
+kubectl apply --dry-run=server -f k8s/app.yaml
+namespace/sentiment unchanged (server dry run)
+deployment.apps/sentiment unchanged (server dry run)
+service/sentiment unchanged (server dry run)
+service/sentiment-metrics unchanged (server dry run)
+ingress.networking.k8s.io/sentiment unchanged (server dry run)
+horizontalpodautoscaler.autoscaling/sentiment unchanged (server dry run)
+kubectl apply --dry-run=server -f k8s/monitoring.yaml
+servicemonitor.monitoring.coreos.com/sentiment unchanged (server dry run)
+kubectl apply --dry-run=server -f k8s/load.yaml
+job.batch/sentiment-load unchanged (server dry run)
+kubectl apply --dry-run=server -f k8s/metallb-virtualbox.yaml
+ipaddresspool.metallb.io/sentiment-hostonly unchanged (server dry run)
+l2advertisement.metallb.io/sentiment-hostonly unchanged (server dry run)
+PASS: all Kubernetes manifests validated by the API server

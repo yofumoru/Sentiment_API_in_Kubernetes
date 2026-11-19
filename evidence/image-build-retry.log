@@ -1,0 +1,187 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 636B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/maven:3.9-eclipse-temurin-21-alpine
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/alpine:3.22
+#3 DONE 2.2s
+
+#2 [internal] load metadata for docker.io/library/maven:3.9-eclipse-temurin-21-alpine
+#2 DONE 2.2s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 93B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 8.24kB done
+#5 DONE 0.0s
+
+#6 [build 1/6] FROM docker.io/library/maven:3.9-eclipse-temurin-21-alpine@sha256:308cba8b638ed7e4658cea3f8399066219466211c805f6d5728c3c9c7614661b
+#6 resolve docker.io/library/maven:3.9-eclipse-temurin-21-alpine@sha256:308cba8b638ed7e4658cea3f8399066219466211c805f6d5728c3c9c7614661b 0.0s done
+#6 sha256:308cba8b638ed7e4658cea3f8399066219466211c805f6d5728c3c9c7614661b 2.73kB / 2.73kB done
+#6 sha256:c18dec86324486418fa5e885e0642e3629d4a8b1f50206ce1760a4bbe43fcbe6 7.65kB / 7.65kB done
+#6 sha256:8e0e05dd51e5ffe47d317144d69de9a3946dc8d83750c639d76c40e723b3b608 0B / 21.44MB 0.1s
+#6 sha256:aef75a28e30757c64e16cfcffb02a74ebedd3fd29957079a267d06c81287cadf 2.73kB / 2.73kB done
+#6 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 0B / 3.85MB 0.1s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 0B / 158.33MB 0.1s
+#6 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 1.05MB / 3.85MB 0.5s
+#6 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 2.10MB / 3.85MB 0.7s
+#6 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 3.85MB / 3.85MB 0.7s done
+#6 extracting sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 0.1s
+#6 sha256:0aeafda7b1fad5c53a3b22b763dd94158c78503c46b440abd39af469e9184f21 0B / 130B 0.8s
+#6 sha256:8e0e05dd51e5ffe47d317144d69de9a3946dc8d83750c639d76c40e723b3b608 2.10MB / 21.44MB 1.1s
+#6 extracting sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 0.3s done
+#6 sha256:0aeafda7b1fad5c53a3b22b763dd94158c78503c46b440abd39af469e9184f21 130B / 130B 1.0s done
+#6 sha256:f75bb0de4136d37b665782e892fb7132a0c4d32a3d4bf6989609487696b5e32f 0B / 2.46kB 1.1s
+#6 sha256:8e0e05dd51e5ffe47d317144d69de9a3946dc8d83750c639d76c40e723b3b608 4.19MB / 21.44MB 1.4s
+#6 sha256:f75bb0de4136d37b665782e892fb7132a0c4d32a3d4bf6989609487696b5e32f 2.46kB / 2.46kB 1.3s done
+#6 sha256:cc3da9d4496e0bf1666d57e8463c928cd6863cbd9b53f026482966115ab72b38 0B / 3.33MB 1.4s
+#6 sha256:8e0e05dd51e5ffe47d317144d69de9a3946dc8d83750c639d76c40e723b3b608 6.29MB / 21.44MB 1.9s
+#6 sha256:cc3da9d4496e0bf1666d57e8463c928cd6863cbd9b53f026482966115ab72b38 2.10MB / 3.33MB 1.9s
+#6 sha256:cc3da9d4496e0bf1666d57e8463c928cd6863cbd9b53f026482966115ab72b38 3.33MB / 3.33MB 2.0s
+#6 sha256:cc3da9d4496e0bf1666d57e8463c928cd6863cbd9b53f026482966115ab72b38 3.33MB / 3.33MB 2.0s done
+#6 sha256:69846174944f8f0e58ec59b33e452c0d5e8088bbf249dfaf8ab9f31cb365d71b 0B / 9.36MB 2.2s
+#6 sha256:8e0e05dd51e5ffe47d317144d69de9a3946dc8d83750c639d76c40e723b3b608 8.39MB / 21.44MB 2.3s
+#6 sha256:69846174944f8f0e58ec59b33e452c0d5e8088bbf249dfaf8ab9f31cb365d71b 1.05MB / 9.36MB 2.5s
+#6 sha256:69846174944f8f0e58ec59b33e452c0d5e8088bbf249dfaf8ab9f31cb365d71b 2.10MB / 9.36MB 2.7s
+#6 sha256:69846174944f8f0e58ec59b33e452c0d5e8088bbf249dfaf8ab9f31cb365d71b 4.19MB / 9.36MB 2.9s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 8.39MB / 158.33MB 3.0s
+#6 sha256:8e0e05dd51e5ffe47d317144d69de9a3946dc8d83750c639d76c40e723b3b608 11.53MB / 21.44MB 3.2s
+#6 sha256:69846174944f8f0e58ec59b33e452c0d5e8088bbf249dfaf8ab9f31cb365d71b 5.24MB / 9.36MB 3.2s
+#6 sha256:69846174944f8f0e58ec59b33e452c0d5e8088bbf249dfaf8ab9f31cb365d71b 6.29MB / 9.36MB 3.4s
+#6 sha256:8e0e05dd51e5ffe47d317144d69de9a3946dc8d83750c639d76c40e723b3b608 13.63MB / 21.44MB 3.6s
+#6 sha256:69846174944f8f0e58ec59b33e452c0d5e8088bbf249dfaf8ab9f31cb365d71b 7.34MB / 9.36MB 3.6s
+#6 sha256:69846174944f8f0e58ec59b33e452c0d5e8088bbf249dfaf8ab9f31cb365d71b 8.39MB / 9.36MB 3.8s
+#6 sha256:8e0e05dd51e5ffe47d317144d69de9a3946dc8d83750c639d76c40e723b3b608 15.73MB / 21.44MB 3.9s
+#6 sha256:69846174944f8f0e58ec59b33e452c0d5e8088bbf249dfaf8ab9f31cb365d71b 9.36MB / 9.36MB 4.0s done
+#6 sha256:f8dca891c9f7de83d005f905b00153de6ef6df49eb595e616ec0235c853fdc69 0B / 855B 4.1s
+#6 sha256:8e0e05dd51e5ffe47d317144d69de9a3946dc8d83750c639d76c40e723b3b608 17.83MB / 21.44MB 4.3s
+#6 sha256:f8dca891c9f7de83d005f905b00153de6ef6df49eb595e616ec0235c853fdc69 855B / 855B 4.2s done
+#6 sha256:94f838d7bd14bbb867378acf3aaecf49b0f680cf2dccd50eeba847339cae05d5 0B / 154B 4.3s
+#6 sha256:94f838d7bd14bbb867378acf3aaecf49b0f680cf2dccd50eeba847339cae05d5 154B / 154B 4.5s done
+#6 sha256:8e0e05dd51e5ffe47d317144d69de9a3946dc8d83750c639d76c40e723b3b608 19.92MB / 21.44MB 4.6s
+#6 sha256:8e0e05dd51e5ffe47d317144d69de9a3946dc8d83750c639d76c40e723b3b608 21.44MB / 21.44MB 4.9s done
+#6 extracting sha256:8e0e05dd51e5ffe47d317144d69de9a3946dc8d83750c639d76c40e723b3b608
+#6 ...
+
+#7 [stage-1 1/5] FROM docker.io/library/alpine:3.22@sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f
+#7 resolve docker.io/library/alpine:3.22@sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f 0.0s done
+#7 sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f 9.22kB / 9.22kB done
+#7 sha256:9db2934886712d877c932e07249c75a59e6ca27adfbccc05261987a17bef2d63 1.02kB / 1.02kB done
+#7 sha256:812e99317af7009fea987b5ad913e63f8494c2d6e596b59b6ac8b8f91f7766e8 611B / 611B done
+#7 sha256:710f3da1112f360bed5d2908205aeee86b9d04ecd471354cf7049a2f0bdb5c72 3.79MB / 3.79MB 5.2s done
+#7 extracting sha256:710f3da1112f360bed5d2908205aeee86b9d04ecd471354cf7049a2f0bdb5c72 0.2s done
+#7 DONE 5.4s
+
+#6 [build 1/6] FROM docker.io/library/maven:3.9-eclipse-temurin-21-alpine@sha256:308cba8b638ed7e4658cea3f8399066219466211c805f6d5728c3c9c7614661b
+#6 ...
+
+#8 [stage-1 2/5] RUN apk add --no-cache libstdc++ zlib
+#8 0.134 fetch https://dl-cdn.alpinelinux.org/alpine/v3.22/main/x86_64/APKINDEX.tar.gz
+#8 0.683 fetch https://dl-cdn.alpinelinux.org/alpine/v3.22/community/x86_64/APKINDEX.tar.gz
+#8 1.043 (1/2) Installing libgcc (14.2.0-r6)
+#8 1.095 (2/2) Installing libstdc++ (14.2.0-r6)
+#8 1.225 OK: 10 MiB in 18 packages
+#8 DONE 1.5s
+
+#9 [stage-1 3/5] WORKDIR /app
+#9 DONE 0.0s
+
+#6 [build 1/6] FROM docker.io/library/maven:3.9-eclipse-temurin-21-alpine@sha256:308cba8b638ed7e4658cea3f8399066219466211c805f6d5728c3c9c7614661b
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 19.92MB / 158.33MB 7.0s
+#6 extracting sha256:8e0e05dd51e5ffe47d317144d69de9a3946dc8d83750c639d76c40e723b3b608 1.1s done
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 28.31MB / 158.33MB 8.7s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 36.70MB / 158.33MB 10.0s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 45.09MB / 158.33MB 11.5s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 54.53MB / 158.33MB 13.2s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 62.91MB / 158.33MB 14.7s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 71.30MB / 158.33MB 15.5s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 79.69MB / 158.33MB 16.2s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 88.08MB / 158.33MB 17.1s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 97.52MB / 158.33MB 17.8s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 106.95MB / 158.33MB 18.6s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 115.34MB / 158.33MB 19.5s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 124.78MB / 158.33MB 20.3s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 133.17MB / 158.33MB 21.5s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 141.56MB / 158.33MB 22.9s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 150.99MB / 158.33MB 24.3s
+#6 sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 158.33MB / 158.33MB 25.0s done
+#6 extracting sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 0.1s
+#6 extracting sha256:802e35573aa7ee42b46fd9714582af48caf0f6aebbf2992311da030c8ff5a423 3.4s done
+#6 extracting sha256:0aeafda7b1fad5c53a3b22b763dd94158c78503c46b440abd39af469e9184f21 done
+#6 extracting sha256:f75bb0de4136d37b665782e892fb7132a0c4d32a3d4bf6989609487696b5e32f done
+#6 extracting sha256:cc3da9d4496e0bf1666d57e8463c928cd6863cbd9b53f026482966115ab72b38
+#6 extracting sha256:cc3da9d4496e0bf1666d57e8463c928cd6863cbd9b53f026482966115ab72b38 0.1s done
+#6 extracting sha256:69846174944f8f0e58ec59b33e452c0d5e8088bbf249dfaf8ab9f31cb365d71b 0.1s
+#6 extracting sha256:69846174944f8f0e58ec59b33e452c0d5e8088bbf249dfaf8ab9f31cb365d71b 0.1s done
+#6 extracting sha256:f8dca891c9f7de83d005f905b00153de6ef6df49eb595e616ec0235c853fdc69 done
+#6 extracting sha256:94f838d7bd14bbb867378acf3aaecf49b0f680cf2dccd50eeba847339cae05d5 done
+#6 DONE 29.1s
+
+#10 [build 2/6] WORKDIR /workspace
+#10 DONE 0.0s
+
+#11 [build 3/6] COPY pom.xml .
+#11 DONE 0.1s
+
+#12 [build 4/6] COPY src ./src
+#12 DONE 0.0s
+
+#13 [build 5/6] RUN mvn -B -ntp package
+#13 2.044 [INFO] Scanning for projects...
+#13 7.005 [INFO] 
+#13 7.006 [INFO] -----------------------< edu.project:sentiment >------------------------
+#13 7.006 [INFO] Building sentiment 1.0.0
+#13 7.006 [INFO]   from pom.xml
+#13 7.006 [INFO] --------------------------------[ jar ]---------------------------------
+#13 15.00 [INFO] 
+#13 15.00 [INFO] --- resources:3.3.1:resources (default-resources) @ sentiment ---
+#13 16.62 [INFO] Copying 1 resource from src/main/resources to target/classes
+#13 16.63 [INFO] Copying 1 resource from src/main/resources to target/classes
+#13 16.63 [INFO] 
+#13 16.63 [INFO] --- compiler:3.14.1:compile (default-compile) @ sentiment ---
+#13 18.53 [INFO] Recompiling the module because of changed source code.
+#13 18.53 [INFO] Compiling 3 source files with javac [debug parameters release 21] to target/classes
+#13 19.58 [INFO] 
+#13 19.58 [INFO] --- resources:3.3.1:testResources (default-testResources) @ sentiment ---
+#13 19.60 [INFO] skip non existing resourceDirectory /workspace/src/test/resources
+#13 19.60 [INFO] 
+#13 19.60 [INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ sentiment ---
+#13 19.60 [INFO] No sources to compile
+#13 19.60 [INFO] 
+#13 19.60 [INFO] --- surefire:3.5.5:test (default-test) @ sentiment ---
+#13 22.85 [INFO] No tests to run.
+#13 22.86 [INFO] 
+#13 22.86 [INFO] --- jar:3.4.2:jar (default-jar) @ sentiment ---
+#13 27.60 [INFO] Building jar: /workspace/target/sentiment.jar
+#13 27.64 [INFO] 
+#13 27.64 [INFO] --- spring-boot:3.5.14:repackage (repackage) @ sentiment ---
+#13 31.46 [INFO] Replacing main artifact /workspace/target/sentiment.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+#13 31.46 [INFO] The original artifact has been renamed to /workspace/target/sentiment.jar.original
+#13 31.47 [INFO] ------------------------------------------------------------------------
+#13 31.47 [INFO] BUILD SUCCESS
+#13 31.47 [INFO] ------------------------------------------------------------------------
+#13 31.48 [INFO] Total time:  29.448 s
+#13 31.48 [INFO] ------------------------------------------------------------------------
+#13 DONE 32.1s
+
+#14 [build 6/6] RUN jlink --add-modules java.se,jdk.unsupported,jdk.management,jdk.crypto.ec     --strip-debug --no-header-files --no-man-pages --compress=zip-6 --output /opt/runtime
+#14 DONE 9.0s
+
+#15 [stage-1 4/5] COPY --from=build /opt/runtime /opt/java
+#15 DONE 0.3s
+
+#16 [stage-1 5/5] COPY --from=build /workspace/target/sentiment.jar /app/sentiment.jar
+#16 DONE 0.3s
+
+#17 exporting to image
+#17 exporting layers 0.1s done
+#17 writing image sha256:fcc213115a1625b383028e46394f74e01a161adfa857bdddeb0afb3d77d7d3c7
+#17 writing image sha256:fcc213115a1625b383028e46394f74e01a161adfa857bdddeb0afb3d77d7d3c7 done
+#17 naming to docker.io/library/sentiment:1.0.0 done
+#17 DONE 0.2s

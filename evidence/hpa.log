@@ -1,0 +1,108 @@
+Initial: ready=3 desired=3 cpu=18%
+job.batch/sentiment-load created
+22:06:45+03:00 ready=3 desired=3 cpu=18% jobs-complete=0/3
+22:06:53+03:00 ready=3 desired=3 cpu=18% jobs-complete=0/3
+22:07:01+03:00 ready=3 desired=3 cpu=18% jobs-complete=0/3
+22:07:09+03:00 ready=3 desired=3 cpu=18% jobs-complete=0/3
+22:07:18+03:00 ready=3 desired=3 cpu=18% jobs-complete=0/3
+22:07:26+03:00 ready=3 desired=3 cpu=18% jobs-complete=0/3
+22:07:34+03:00 ready=3 desired=3 cpu=18% jobs-complete=0/3
+22:07:42+03:00 ready=3 desired=7 cpu=617% jobs-complete=0/3
+22:07:50+03:00 ready=3 desired=7 cpu=617% jobs-complete=0/3
+22:07:59+03:00 ready=3 desired=8 cpu=617% jobs-complete=0/3
+22:08:07+03:00 ready=7 desired=8 cpu=617% jobs-complete=0/3
+PASS: scale-up 3 -> 7 ready
+22:08:15+03:00 ready=7 desired=8 cpu=617% jobs-complete=0/3
+22:08:23+03:00 ready=8 desired=8 cpu=617% jobs-complete=0/3
+22:08:32+03:00 ready=8 desired=8 cpu=617% jobs-complete=0/3
+22:08:40+03:00 ready=8 desired=8 cpu=529% jobs-complete=0/3
+22:08:48+03:00 ready=8 desired=8 cpu=529% jobs-complete=0/3
+22:08:56+03:00 ready=8 desired=8 cpu=529% jobs-complete=0/3
+22:09:05+03:00 ready=8 desired=8 cpu=529% jobs-complete=0/3
+22:09:13+03:00 ready=8 desired=8 cpu=529% jobs-complete=0/3
+22:09:21+03:00 ready=8 desired=8 cpu=529% jobs-complete=0/3
+22:09:29+03:00 ready=8 desired=8 cpu=529% jobs-complete=0/3
+22:09:38+03:00 ready=8 desired=8 cpu=529% jobs-complete=0/3
+22:09:46+03:00 ready=8 desired=8 cpu=480% jobs-complete=0/3
+22:09:54+03:00 ready=8 desired=8 cpu=480% jobs-complete=1/3
+22:10:02+03:00 ready=8 desired=8 cpu=480% jobs-complete=3/3
+22:10:10+03:00 ready=8 desired=8 cpu=480% jobs-complete=3/3
+22:10:19+03:00 ready=8 desired=8 cpu=480% jobs-complete=3/3
+22:10:27+03:00 ready=8 desired=8 cpu=480% jobs-complete=3/3
+22:10:35+03:00 ready=8 desired=8 cpu=480% jobs-complete=3/3
+22:10:43+03:00 ready=8 desired=8 cpu=154% jobs-complete=3/3
+22:10:51+03:00 ready=8 desired=8 cpu=154% jobs-complete=3/3
+22:11:00+03:00 ready=8 desired=8 cpu=154% jobs-complete=3/3
+22:11:08+03:00 ready=8 desired=8 cpu=154% jobs-complete=3/3
+22:11:16+03:00 ready=8 desired=8 cpu=154% jobs-complete=3/3
+22:11:24+03:00 ready=8 desired=8 cpu=154% jobs-complete=3/3
+22:11:32+03:00 ready=8 desired=8 cpu=154% jobs-complete=3/3
+22:11:40+03:00 ready=8 desired=8 cpu=154% jobs-complete=3/3
+22:11:49+03:00 ready=8 desired=8 cpu=7% jobs-complete=3/3
+22:11:57+03:00 ready=8 desired=8 cpu=7% jobs-complete=3/3
+22:12:05+03:00 ready=8 desired=8 cpu=7% jobs-complete=3/3
+22:12:13+03:00 ready=8 desired=8 cpu=7% jobs-complete=3/3
+22:12:21+03:00 ready=8 desired=8 cpu=7% jobs-complete=3/3
+Name:                                                  sentiment
+Namespace:                                             sentiment
+Labels:                                                <none>
+Annotations:                                           <none>
+Reference:                                             Deployment/sentiment
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  7% (3m) / 60%
+Min replicas:                                          3
+Max replicas:                                          8
+Behavior:
+  Scale Up:
+    Stabilization Window: 0 seconds
+    Select Policy: Max
+    Policies:
+      - Type: Pods     Value: 4    Period: 15 seconds
+      - Type: Percent  Value: 100  Period: 15 seconds
+  Scale Down:
+    Stabilization Window: 60 seconds
+    Select Policy: Max
+    Policies:
+      - Type: Percent  Value: 100  Period: 15 seconds
+Deployment pods:       8 current / 3 desired
+Conditions:
+  Type            Status  Reason            Message
+  ----            ------  ------            -------
+  AbleToScale     True    SucceededRescale  the HPA controller was able to update the target scale to 3
+  ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    TooFewReplicas    the desired replica count is less than the minimum replica count
+  ScaledToZero    False   NotScaledToZero   the HPA controller did not scale the workload to zero
+Events:
+  Type     Reason                        Age                   From                       Message
+  ----     ------                        ----                  ----                       -------
+  Warning  FailedGetResourceMetric       7m6s (x4 over 7m51s)  horizontal-pod-autoscaler  failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+  Warning  FailedComputeMetricsReplicas  7m6s (x4 over 7m51s)  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+  Warning  FailedGetResourceMetric       6m6s (x4 over 6m51s)  horizontal-pod-autoscaler  failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Warning  FailedComputeMetricsReplicas  6m6s (x4 over 6m51s)  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Normal   SuccessfulRescale             4m51s                 horizontal-pod-autoscaler  New size: 7; reason: cpu resource utilization (percentage of request) above target
+  Normal   SuccessfulRescale             4m36s                 horizontal-pod-autoscaler  New size: 8; reason: cpu resource utilization (percentage of request) above target
+  Normal   SuccessfulRescale             4s                    horizontal-pod-autoscaler  New size: 3; reason: All metrics below target
+[pod/sentiment-load-q7rjb/load] Sockets used: 92651 (for perfect keepalive, would be 12)
+[pod/sentiment-load-q7rjb/load] Uniform: false, Jitter: false, Catchup allowed: true
+[pod/sentiment-load-q7rjb/load] IP addresses distribution:
+[pod/sentiment-load-q7rjb/load] 10.101.102.109:80: 92651
+[pod/sentiment-load-q7rjb/load] Code 200 : 92639 (100.0 %)
+[pod/sentiment-load-q7rjb/load] Response Header Sizes : count 92639 avg 173 +/- 0 min 173 max 173 sum 16026547
+[pod/sentiment-load-q7rjb/load] Response Body/Total Sizes : count 92639 avg 208 +/- 0 min 208 max 208 sum 19268912
+[pod/sentiment-load-q7rjb/load] All done 92639 calls (plus 12 warmup) 23.315 ms avg, 514.6 qps
+[pod/sentiment-load-scknf/load] Sockets used: 96700 (for perfect keepalive, would be 12)
+[pod/sentiment-load-scknf/load] Uniform: false, Jitter: false, Catchup allowed: true
+[pod/sentiment-load-scknf/load] IP addresses distribution:
+[pod/sentiment-load-scknf/load] 10.101.102.109:80: 96700
+[pod/sentiment-load-scknf/load] Code 200 : 96688 (100.0 %)
+[pod/sentiment-load-scknf/load] Response Header Sizes : count 96688 avg 173 +/- 0 min 173 max 173 sum 16727024
+[pod/sentiment-load-scknf/load] Response Body/Total Sizes : count 96688 avg 208 +/- 0 min 208 max 208 sum 20111104
+[pod/sentiment-load-scknf/load] All done 96688 calls (plus 12 warmup) 22.338 ms avg, 537.1 qps
+[pod/sentiment-load-sglb9/load] Sockets used: 91926 (for perfect keepalive, would be 12)
+[pod/sentiment-load-sglb9/load] Uniform: false, Jitter: false, Catchup allowed: true
+[pod/sentiment-load-sglb9/load] IP addresses distribution:
+[pod/sentiment-load-sglb9/load] 10.101.102.109:80: 91926
+[pod/sentiment-load-sglb9/load] Code 200 : 91914 (100.0 %)
+[pod/sentiment-load-sglb9/load] Response Header Sizes : count 91914 avg 173 +/- 0 min 173 max 173 sum 15901122
+[pod/sentiment-load-sglb9/load] Response Body/Total Sizes : count 91914 avg 208 +/- 0 min 208 max 208 sum 19118112
+[pod/sentiment-load-sglb9/load] All done 91914 calls (plus 12 warmup) 23.502 ms avg, 510.5 qps

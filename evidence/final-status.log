@@ -1,0 +1,36 @@
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/sentiment   3/3     3            3           8m54s
+
+NAME                             READY   STATUS      RESTARTS   AGE
+pod/sentiment-6f9cc7b7c8-2qgfz   1/1     Running     0          8m54s
+pod/sentiment-6f9cc7b7c8-9shnh   1/1     Running     0          8m54s
+pod/sentiment-6f9cc7b7c8-jql6p   1/1     Running     0          8m54s
+pod/sentiment-load-q7rjb         0/1     Completed   0          6m49s
+pod/sentiment-load-scknf         0/1     Completed   0          6m49s
+pod/sentiment-load-sglb9         0/1     Completed   0          6m49s
+
+NAME                        TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)        AGE
+service/sentiment           LoadBalancer   10.101.102.109   192.168.59.81   80:30930/TCP   8m54s
+service/sentiment-metrics   ClusterIP      10.105.225.149   <none>          8081/TCP       8m54s
+
+NAME                                  CLASS     HOSTS            ADDRESS         PORTS   AGE
+ingress.networking.k8s.io/sentiment   traefik   sentiment.test   192.168.59.80   80      8m54s
+
+NAME                                            REFERENCE              TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/sentiment   Deployment/sentiment   cpu: 7%/60%   3         8         3          8m54s
+NAME                         CPU(cores)   MEMORY(bytes)   
+sentiment-6f9cc7b7c8-2qgfz   4m           152Mi           
+sentiment-6f9cc7b7c8-9shnh   4m           155Mi           
+sentiment-6f9cc7b7c8-jql6p   5m           146Mi           
+NAME             STATUS     COMPLETIONS   DURATION   AGE
+sentiment-load   Complete   3/3           3m12s      6m49s
+NAME                                                   READY   STATUS    RESTARTS   AGE
+prometheus-grafana-65b867bb4b-zgjfw                    3/3     Running   0          12m
+prometheus-kube-prometheus-operator-5986df5656-pxp2v   1/1     Running   0          12m
+prometheus-kube-state-metrics-cb5d78584-gfnck          1/1     Running   0          12m
+prometheus-prometheus-kube-prometheus-prometheus-0     2/2     Running   0          11m
+prometheus-prometheus-node-exporter-cwphk              1/1     Running   0          11m
+prometheus-prometheus-node-exporter-gcstv              1/1     Running   0          12m
+kube_horizontalpodautoscaler_status_current_replicas{namespace="sentiment"}: 3
+kube_horizontalpodautoscaler_status_desired_replicas{namespace="sentiment"}: 3
+sum(up{namespace="sentiment",service="sentiment-metrics"}): 3

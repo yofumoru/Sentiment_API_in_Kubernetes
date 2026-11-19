@@ -1,0 +1,11 @@
+Status:	
+	machine: sentiment-lab
+	pid: 17008
+	route: 10.96.0.0/12 -> 192.168.59.101
+	minikube: Running
+	services: []
+    errors: 
+		minikube: no errors
+		router: error adding route: The requested operation requires elevation.
+, 2
+		loadbalancer emulator: no errors

@@ -1,0 +1,32 @@
+defaultRules:
+  create: false
+alertmanager:
+  enabled: false
+grafana:
+  defaultDashboardsEnabled: false
+  sidecar:
+    dashboards:
+      enabled: true
+      searchNamespace: monitoring
+  resources:
+    requests:
+      cpu: 30m
+      memory: 96Mi
+prometheus:
+  prometheusSpec:
+    retention: 6h
+    resources:
+      requests:
+        cpu: 50m
+        memory: 192Mi
+    serviceMonitorNamespaceSelector:
+      matchLabels:
+        kubernetes.io/metadata.name: monitoring
+kubeControllerManager:
+  enabled: false
+kubeEtcd:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeProxy:
+  enabled: false

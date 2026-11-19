@@ -1,0 +1,4 @@
+NAME      	NAMESPACE     	REVISION	STATUS  	CHART                       	APP VERSION
+metallb   	metallb-system	1       	deployed	metallb-0.16.2              	v0.16.2
+prometheus	monitoring    	1       	deployed	kube-prometheus-stack-93.4.1	v0.95.2
+traefik   	ingress-system	2       	deployed	traefik-42.4.1              	v3.7.19

@@ -1,0 +1,21 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: sentiment-hostonly
+  namespace: metallb-system
+spec:
+  addresses:
+    - 192.168.59.80-192.168.59.81
+  serviceAllocation:
+    namespaces:
+      - ingress-system
+      - sentiment
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: sentiment-hostonly
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+    - sentiment-hostonly

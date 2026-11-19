@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sentiment-load
+  namespace: sentiment
+spec:
+  parallelism: 3
+  completions: 3
+  backoffLimit: 0
+  activeDeadlineSeconds: 270
+  template:
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      containers:
+        - name: load
+          image: fortio/fortio:1.69.4
+          args:
+            - load
+            - -t
+            - 3m
+            - -qps
+            - "0"
+            - -c
+            - "12"
+            - -keepalive=false
+            - "http://sentiment/api/sentiment?text=hello%20wonderful%20day"
+          resources:
+            requests:
+              cpu: 30m
+              memory: 32Mi
+            limits:
+              memory: 128Mi

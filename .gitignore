@@ -1,0 +1,12 @@
+/.idea/
+/.idea_modules/
+*.iml
+/.local/
+/target/
+/tmp/
+__pycache__/
+/output/*
+!/output/pdf/
+/output/pdf/*
+!/output/pdf/report-sentiment-kubernetes.pdf
+!/output/pdf/presentation-sentiment-kubernetes.pdf

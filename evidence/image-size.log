@@ -1,0 +1,5 @@
+sentiment-lab : docker image inspect sentiment:1.0.0
+100427815 sha256:fcc213115a1625b383028e46394f74e01a161adfa857bdddeb0afb3d77d7d3c7
+sentiment-lab-m02 : docker image inspect sentiment:1.0.0
+100429835 sha256:fcc213115a1625b383028e46394f74e01a161adfa857bdddeb0afb3d77d7d3c7
+PASS: image < 150000000 bytes on both nodes

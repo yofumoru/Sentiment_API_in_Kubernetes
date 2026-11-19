@@ -1,0 +1,82 @@
+NAME             STATUS     COMPLETIONS   DURATION   AGE
+sentiment-load   Complete   3/3           3m12s      5m23s
+[pod/sentiment-load-q7rjb/load] # target 75% 0.00342427
+[pod/sentiment-load-q7rjb/load] # target 90% 0.00893993
+[pod/sentiment-load-q7rjb/load] # target 99% 0.0228247
+[pod/sentiment-load-q7rjb/load] # target 99.9% 0.0407054
+[pod/sentiment-load-q7rjb/load] Sockets used: 92651 (for perfect keepalive, would be 12)
+[pod/sentiment-load-q7rjb/load] Uniform: false, Jitter: false, Catchup allowed: true
+[pod/sentiment-load-q7rjb/load] IP addresses distribution:
+[pod/sentiment-load-q7rjb/load] 10.101.102.109:80: 92651
+[pod/sentiment-load-q7rjb/load] Code 200 : 92639 (100.0 %)
+[pod/sentiment-load-q7rjb/load] Response Header Sizes : count 92639 avg 173 +/- 0 min 173 max 173 sum 16026547
+[pod/sentiment-load-q7rjb/load] Response Body/Total Sizes : count 92639 avg 208 +/- 0 min 208 max 208 sum 19268912
+[pod/sentiment-load-q7rjb/load] All done 92639 calls (plus 12 warmup) 23.315 ms avg, 514.6 qps
+[pod/sentiment-load-scknf/load] # target 75% 0.00317989
+[pod/sentiment-load-scknf/load] # target 90% 0.0086385
+[pod/sentiment-load-scknf/load] # target 99% 0.0218
+[pod/sentiment-load-scknf/load] # target 99.9% 0.0387788
+[pod/sentiment-load-scknf/load] Sockets used: 96700 (for perfect keepalive, would be 12)
+[pod/sentiment-load-scknf/load] Uniform: false, Jitter: false, Catchup allowed: true
+[pod/sentiment-load-scknf/load] IP addresses distribution:
+[pod/sentiment-load-scknf/load] 10.101.102.109:80: 96700
+[pod/sentiment-load-scknf/load] Code 200 : 96688 (100.0 %)
+[pod/sentiment-load-scknf/load] Response Header Sizes : count 96688 avg 173 +/- 0 min 173 max 173 sum 16727024
+[pod/sentiment-load-scknf/load] Response Body/Total Sizes : count 96688 avg 208 +/- 0 min 208 max 208 sum 20111104
+[pod/sentiment-load-scknf/load] All done 96688 calls (plus 12 warmup) 22.338 ms avg, 537.1 qps
+[pod/sentiment-load-sglb9/load] # target 75% 0.00333226
+[pod/sentiment-load-sglb9/load] # target 90% 0.00887081
+[pod/sentiment-load-sglb9/load] # target 99% 0.0227938
+[pod/sentiment-load-sglb9/load] # target 99.9% 0.0426918
+[pod/sentiment-load-sglb9/load] Sockets used: 91926 (for perfect keepalive, would be 12)
+[pod/sentiment-load-sglb9/load] Uniform: false, Jitter: false, Catchup allowed: true
+[pod/sentiment-load-sglb9/load] IP addresses distribution:
+[pod/sentiment-load-sglb9/load] 10.101.102.109:80: 91926
+[pod/sentiment-load-sglb9/load] Code 200 : 91914 (100.0 %)
+[pod/sentiment-load-sglb9/load] Response Header Sizes : count 91914 avg 173 +/- 0 min 173 max 173 sum 15901122
+[pod/sentiment-load-sglb9/load] Response Body/Total Sizes : count 91914 avg 208 +/- 0 min 208 max 208 sum 19118112
+[pod/sentiment-load-sglb9/load] All done 91914 calls (plus 12 warmup) 23.502 ms avg, 510.5 qps
+22:12:07+03:00 ready=8 desired=8 cpu=7%
+22:12:15+03:00 ready=8 desired=8 cpu=7%
+22:12:24+03:00 ready=8 desired=8 cpu=7%
+22:12:32+03:00 ready=3 desired=3 cpu=7%
+PASS: scale-down -> 3 ready
+Name:                                                  sentiment
+Namespace:                                             sentiment
+Labels:                                                <none>
+Annotations:                                           <none>
+Reference:                                             Deployment/sentiment
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  7% (3m) / 60%
+Min replicas:                                          3
+Max replicas:                                          8
+Behavior:
+  Scale Up:
+    Stabilization Window: 0 seconds
+    Select Policy: Max
+    Policies:
+      - Type: Pods     Value: 4    Period: 15 seconds
+      - Type: Percent  Value: 100  Period: 15 seconds
+  Scale Down:
+    Stabilization Window: 60 seconds
+    Select Policy: Max
+    Policies:
+      - Type: Percent  Value: 100  Period: 15 seconds
+Deployment pods:       8 current / 3 desired
+Conditions:
+  Type            Status  Reason            Message
+  ----            ------  ------            -------
+  AbleToScale     True    SucceededRescale  the HPA controller was able to update the target scale to 3
+  ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    TooFewReplicas    the desired replica count is less than the minimum replica count
+  ScaledToZero    False   NotScaledToZero   the HPA controller did not scale the workload to zero
+Events:
+  Type     Reason                        Age                   From                       Message
+  ----     ------                        ----                  ----                       -------
+  Warning  FailedGetResourceMetric       7m8s (x4 over 7m53s)  horizontal-pod-autoscaler  failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+  Warning  FailedComputeMetricsReplicas  7m8s (x4 over 7m53s)  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+  Warning  FailedGetResourceMetric       6m8s (x4 over 6m53s)  horizontal-pod-autoscaler  failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Warning  FailedComputeMetricsReplicas  6m8s (x4 over 6m53s)  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Normal   SuccessfulRescale             4m53s                 horizontal-pod-autoscaler  New size: 7; reason: cpu resource utilization (percentage of request) above target
+  Normal   SuccessfulRescale             4m38s                 horizontal-pod-autoscaler  New size: 8; reason: cpu resource utilization (percentage of request) above target
+  Normal   SuccessfulRescale             6s                    horizontal-pod-autoscaler  New size: 3; reason: All metrics below target

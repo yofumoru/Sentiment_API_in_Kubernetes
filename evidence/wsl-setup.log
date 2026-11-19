@@ -1,0 +1,68 @@
++ apk add bash curl docker iptables shadow
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.22/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.22/community/x86_64/APKINDEX.tar.gz
+(1/32) Installing ncurses-terminfo-base (6.5_p20250503-r0)
+(2/32) Installing libncursesw (6.5_p20250503-r0)
+(3/32) Installing readline (8.2.13-r1)
+(4/32) Installing bash (5.2.37-r0)
+Executing bash-5.2.37-r0.post-install
+(5/32) Installing brotli-libs (1.1.1-r0)
+(6/32) Installing c-ares (1.34.9-r0)
+(7/32) Installing libunistring (1.3-r0)
+(8/32) Installing libidn2 (2.3.7-r0)
+(9/32) Installing nghttp2-libs (1.69.0-r0)
+(10/32) Installing libpsl (0.21.5-r3)
+(11/32) Installing zstd-libs (1.5.7-r0)
+(12/32) Installing libcurl (8.14.1-r4)
+(13/32) Installing curl (8.14.1-r4)
+(14/32) Installing ca-certificates (20261020-r0)
+(15/32) Installing libseccomp (2.6.1-r0)
+(16/32) Installing runc (1.3.7-r0)
+(17/32) Installing containerd (2.1.5-r2)
+(18/32) Installing libmnl (1.0.5-r2)
+(19/32) Installing libnftnl (1.2.9-r0)
+(20/32) Installing libxtables (1.8.11-r1)
+(21/32) Installing iptables (1.8.11-r1)
+(22/32) Installing tini-static (0.19.0-r3)
+(23/32) Installing docker-engine (28.3.3-r5)
+Executing docker-engine-28.3.3-r5.pre-install
+(24/32) Installing docker-cli (28.3.3-r5)
+(25/32) Installing docker-cli-buildx (0.24.0-r5)
+(26/32) Installing docker (28.3.3-r5)
+(27/32) Installing libmd (1.1.0-r0)
+(28/32) Installing libbsd (0.12.2-r0)
+(29/32) Installing skalibs-libs (2.14.4.0-r0)
+(30/32) Installing utmps-libs (0.1.3.1-r0)
+(31/32) Installing linux-pam (1.7.0-r4)
+(32/32) Installing shadow (4.17.3-r0)
+Executing busybox-1.37.0-r19.trigger
+Executing ca-certificates-20261020-r0.trigger
+OK: 257 MiB in 48 packages
++ id lab
+id: unknown user lab
++ adduser -D -s /bin/bash lab
++ addgroup lab docker
++ curl -fSL --retry 3 https://storage.googleapis.com/minikube/releases/v1.39.0/minikube-linux-amd64 -o /usr/local/bin/minikube
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0  136M    0  500k    0     0   488k      0  0:04:45  0:00:01  0:04:44  488k
+  7  136M    7 10.3M    0     0  5230k      0  0:00:26  0:00:02  0:00:24 5229k
+ 17  136M   17 23.2M    0     0  7778k      0  0:00:17  0:00:03  0:00:14 7779k
+ 24  136M   24 32.8M    0     0  8321k      0  0:00:16  0:00:04  0:00:12 8320k
+ 32  136M   32 43.6M    0     0  8874k      0  0:00:15  0:00:05  0:00:10 8938k
+ 38  136M   38 52.1M    0     0  8862k      0  0:00:15  0:00:06  0:00:09 10.3M
+ 46  136M   46 63.2M    0     0  9180k      0  0:00:15  0:00:07  0:00:08 10.5M
+ 55  136M   55 75.1M    0     0  9589k      0  0:00:14  0:00:08  0:00:06 10.4M
+ 62  136M   62 84.8M    0     0  9618k      0  0:00:14  0:00:09  0:00:05 10.4M
+ 71  136M   71 97.0M    0     0  9898k      0  0:00:14  0:00:10  0:00:04 10.6M
+ 78  136M   78  106M    0     0  9901k      0  0:00:14  0:00:11  0:00:03 10.8M
+ 85  136M   85  115M    0     0  9842k      0  0:00:14  0:00:12  0:00:02 10.5M
+ 92  136M   92  126M    0     0  9910k      0  0:00:14  0:00:13  0:00:01 10.1M
+ 99  136M   99  135M    0     0  9892k      0  0:00:14  0:00:14 --:--:-- 10.1M
+100  136M  100  136M    0     0  9928k      0  0:00:14  0:00:14 --:--:--  9.7M
++ chmod 755 /usr/local/bin/minikube
++ minikube version
+sh: minikube: not found

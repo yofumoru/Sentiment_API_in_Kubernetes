@@ -1,0 +1,5 @@
+PowerShell commands used:
+Invoke-WebRequest https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe -OutFile .local/minikube.exe
+./.local/minikube.exe version
+./.local/minikube.exe start -p sentiment-lab --driver=virtualbox --no-vtx-check --container-runtime=docker --preload=false --cpus=4 --memory=8192mb --nodes=2
+./.local/minikube.exe -p sentiment-lab node add

@@ -1,0 +1,8 @@
+GET http://127.0.0.1:18080/api/sentiment?text=hello (Host: sentiment.test)
+HTTP/1.1 200 OK
+X-Instance: sentiment-6f9cc7b7c8-2qgfz
+{"sentiment":"positive"}
+X-Instance: sentiment-6f9cc7b7c8-2qgfz (5/15)
+X-Instance: sentiment-6f9cc7b7c8-9shnh (5/15)
+X-Instance: sentiment-6f9cc7b7c8-jql6p (5/15)
+PASS: Ingress and balancing across three replicas

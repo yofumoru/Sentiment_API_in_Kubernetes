@@ -1,0 +1,14 @@
+* [sentiment-lab] minikube v1.39.0 on Microsoft Windows 10 Pro 22H2
+  - KUBECONFIG=<PROJECT_ROOT>\.local\kubeconfig
+  - MINIKUBE_HOME=<PROJECT_ROOT>\.local
+* Using the virtualbox driver based on user configuration
+* Starting "sentiment-lab" primary control-plane node in "sentiment-lab" cluster
+! StartHost failed, but will try again: creating host: create: precreate: This computer doesn't have VT-X/AMD-v enabled. Enabling it in the BIOS is mandatory
+* Failed to start virtualbox VM. Running "minikube delete -p sentiment-lab" may fix it: creating host: create: precreate: This computer doesn't have VT-X/AMD-v enabled. Enabling it in the BIOS is mandatory
+
+X Exiting due to HOST_VIRT_UNAVAILABLE: Failed to start host: creating host: create: precreate: This computer doesn't have VT-X/AMD-v enabled. Enabling it in the BIOS is mandatory
+* Suggestion: Virtualization support is disabled on your computer. If you are running minikube within a VM, try '--driver=docker'. Otherwise, consult your systems BIOS manual for how to enable virtualization.
+* Related issues:
+  - https://github.com/kubernetes/minikube/issues/3900
+  - https://github.com/kubernetes/minikube/issues/4730
+
