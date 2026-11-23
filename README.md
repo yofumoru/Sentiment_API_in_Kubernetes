@@ -10,19 +10,24 @@ Java 21, Spring Boot, Minikube, Traefik, Prometheus и Grafana. Приложен
 
 ## Запуск готового стенда в PowerShell
 
-Стенд Windows хранится в профиле Minikube `sentiment-lab`. В него входят две ВМ VirtualBox: управляющий узел `sentiment-lab` и рабочий узел `sentiment-lab-m02`. Жизненным циклом обеих ВМ управляет Minikube. Образ и ресурсы Kubernetes уже находятся в этом профиле.
+Этот сценарий предназначен для компьютера, на котором уже существует настроенный профиль Minikube `sentiment-lab`. **Готовых виртуальных машин в репозитории нет.** После клонирования на другой компьютер стенд создаётся по разделу [«Развёртывание с нуля»](#развёртывание-с-нуля).
 
-Команды выполняются из корня проекта. Параметр `$standRoot` указывает на каталог исходной установки, в котором уже существует папка `.local` с профилем и программой Minikube. Если исходная установка хранится отдельно от этой копии проекта, используется её абсолютный путь. Для новой установки подходит раздел [«Развёртывание с нуля»](#развёртывание-с-нуля).
+В портативной установке профиль хранится в `.local/.minikube/profiles/sentiment-lab/`, а диски VirtualBox — в `.local/.minikube/machines/sentiment-lab/disk.vmdk` и `.local/.minikube/machines/sentiment-lab-m02/disk.vmdk`. Каталог `.local` также содержит локальную конфигурацию и ключи. Он исключён из Git.
+
+Команды выполняются в **PowerShell на Windows**. `$standRoot` — папка, содержащая `.local` настроенного стенда. Если стенд и репозиторий находятся в разных папках, в первой строке указывается абсолютный путь к папке стенда.
 
 ```powershell
 $standRoot = (Get-Location).Path
 $env:MINIKUBE_HOME = (Resolve-Path (Join-Path $standRoot '.local')).Path
 $env:KUBECONFIG = Join-Path $env:MINIKUBE_HOME 'kubeconfig'
 $mini = Join-Path $env:MINIKUBE_HOME 'minikube.exe'
+if (-not (Test-Path -LiteralPath $mini -PathType Leaf)) {
+    $mini = (Get-Command minikube.exe -ErrorAction Stop).Source
+}
 function ks { & $mini -p sentiment-lab kubectl -- @args }
 ```
 
-Этот блок нужен в каждом новом окне PowerShell. `ks` вызывает kubectl для профиля проекта.
+Этот блок используется в каждом новом окне PowerShell. `ks` вызывает kubectl для профиля проекта. Для команд с путями `k8s/` и `scripts/` рабочим каталогом остаётся корень репозитория.
 
 ### Состояние и запуск
 
@@ -56,26 +61,28 @@ ks -n sentiment get deployment,pods,svc,ingress,hpa
 
 ### REST API, Ingress и балансировка
 
-На проверенном стенде MetalLB назначил приложению IP `192.168.59.81`, а Traefik — `192.168.59.80`. Текущие адреса отображаются в колонке `EXTERNAL-IP`:
+На проверенном стенде MetalLB назначил приложению `192.168.59.81`, а Traefik — `192.168.59.80`. На другой установке адреса могут отличаться. Команды используют IP из статуса служб:
 
 ```powershell
 ks -n sentiment get svc sentiment
 ks -n ingress-system get svc traefik
+$appIp = ks -n sentiment get svc sentiment -o 'jsonpath={.status.loadBalancer.ingress[0].ip}'
+$ingressIp = ks -n ingress-system get svc traefik -o 'jsonpath={.status.loadBalancer.ingress[0].ip}'
 
-curl.exe -fsS "http://192.168.59.81/api/sentiment?text=hello"
-curl.exe -i -H "Host: sentiment.test" "http://192.168.59.80/api/sentiment?text=hello"
+curl.exe -fsS "http://$appIp/api/sentiment?text=hello"
+curl.exe -i -H "Host: sentiment.test" "http://$ingressIp/api/sentiment?text=hello"
 ```
 
 Первый запрос возвращает `{"sentiment":"positive"}`. Второй проходит через Ingress и возвращает HTTP 200 с тем же JSON и заголовком `X-Instance`, содержащим имя пода. Проверка распределения по репликам:
 
 ```powershell
 1..15 | ForEach-Object {
-    curl.exe -fsS -D - -o NUL -H "Host: sentiment.test" "http://192.168.59.80/api/sentiment?text=hello" |
+    curl.exe -fsS -D - -o NUL -H "Host: sentiment.test" "http://$ingressIp/api/sentiment?text=hello" |
         Select-String '^X-Instance:'
 } | Group-Object Line | Select-Object Count, Name
 ```
 
-Имена в выводе можно сопоставить с `ks -n sentiment get pods -l app=sentiment`. Если внешние IP недоступны, для диагностики Ingress используется `ks -n ingress-system port-forward svc/traefik 18080:80` в отдельной консоли. Тогда URL для запроса с заголовком `Host` — `http://127.0.0.1:18080/api/sentiment?text=hello`.
+Имена подов и ВМ отображаются в `ks -n sentiment get pods -l app=sentiment -o wide`. Если `EXTERNAL-IP` остаётся в состоянии `<pending>`, проверяется настройка MetalLB или туннеля. Для диагностики Ingress без внешнего IP в отдельном окне доступна команда `ks -n ingress-system port-forward svc/traefik 18080:80`. В таком случае адрес запроса — `http://127.0.0.1:18080/api/sentiment?text=hello` с заголовком `Host: sentiment.test`.
 
 ### Grafana и Prometheus
 
@@ -137,12 +144,25 @@ ks -n sentiment logs -l job-name=sentiment-load --tail=15 --prefix
 
 ## Развёртывание с нуля
 
-Этот раздел относится к новому профилю на Windows. Для готового стенда достаточно раздела запуска. Требуются [Minikube](https://minikube.sigs.k8s.io/docs/start/), VirtualBox и [Helm 3](https://helm.sh/docs/intro/install/). Команды выполняются из корня проекта. Здесь `minikube.exe` и `helm.exe` доступны через `PATH`. Для портативной установки можно использовать абсолютные пути к этим файлам.
+На Windows требуются [Minikube](https://minikube.sigs.k8s.io/docs/start/), VirtualBox и [Helm 3](https://helm.sh/docs/intro/install/). Все команды выполняются в **PowerShell на Windows из корня репозитория**. Команда `minikube start` с драйвером `virtualbox` и параметром `--nodes=2` создаёт две ВМ. Подготовку гостевых систем, Docker и Kubernetes выполняет Minikube.
 
-### Кластер и образ
+| Где | Что выполняется |
+| --- | --- |
+| Windows | Запуск Minikube и VirtualBox, команды kubectl и Helm, редактирование YAML и HTTP-проверки. |
+| ВМ `sentiment-lab` | Управляющий узел с API-сервером и планировщиком Kubernetes. На этом узле также могут выполняться поды приложения. |
+| ВМ `sentiment-lab-m02` | Рабочий узел. Здесь выполняются поды, размещённые планировщиком. |
+| На уровне кластера | Deployment создаёт три реплики приложения. Kubernetes размещает их по узлам. Helm устанавливает MetalLB, Traefik, Prometheus и Grafana. Minikube включает Metrics Server. |
+
+Ручная настройка компонентов внутри ВМ для этого сценария не требуется. [Два узла Minikube](https://minikube.sigs.k8s.io/docs/tutorials/multi_node/) · [Драйвер VirtualBox](https://minikube.sigs.k8s.io/docs/drivers/virtualbox/)
+
+### 1. Создание кластера
+
+Профиль и kubeconfig сохраняются в `.local` внутри репозитория. `minikube.exe` и `helm.exe` доступны через `PATH` либо указываются абсолютными путями.
 
 ```powershell
-$mini = (Get-Command minikube.exe).Source
+$env:MINIKUBE_HOME = (New-Item -ItemType Directory -Force '.local').FullName
+$env:KUBECONFIG = Join-Path $env:MINIKUBE_HOME 'kubeconfig'
+$mini = (Get-Command minikube.exe -ErrorAction Stop).Source
 function ks { & $mini -p sentiment-lab kubectl -- @args }
 
 & $mini version
@@ -151,19 +171,36 @@ helm version --short
 ks get nodes -o wide
 & $mini -p sentiment-lab addons enable metrics-server
 ks -n kube-system rollout status deployment/metrics-server --timeout=180s
+```
 
-& $mini -p sentiment-lab image build --all -t sentiment:1.0.0 .
+Ожидаются два узла со статусом `Ready`. На проверенном стенде использовались VirtualBox 7.2, Minikube 1.39.0 и Kubernetes 1.37.0. Если после прерванной установки в профиле остался один узел, второй добавляется командой `& $mini -p sentiment-lab node add`.
+
+### 2. Сборка и загрузка образа на оба узла
+
+Сборка запускается с Windows и выполняется в Docker внутри управляющей ВМ. Minikube сохраняет образ в локальный архив и загружает его в контейнерную среду обоих узлов. Это позволяет Kubernetes запускать реплики на любой из двух ВМ.
+
+```powershell
+& $mini -p sentiment-lab image build -t sentiment:1.0.0 .
+& $mini -p sentiment-lab image save sentiment:1.0.0 .local/sentiment.tar
+& $mini -p sentiment-lab image load .local/sentiment.tar
 & $mini -p sentiment-lab ssh -- docker image inspect sentiment:1.0.0 --format '{{.Size}}'
 & $mini -p sentiment-lab ssh --node sentiment-lab-m02 -- docker image inspect sentiment:1.0.0 --format '{{.Size}}'
 ```
 
-На проверенном стенде использовались VirtualBox 7.2, Minikube 1.39.0 и Kubernetes 1.37.0. Если ранее прерванная установка оставила в профиле один узел, второй добавляется командой `& $mini -p sentiment-lab node add`.
+Две последние команды выполняют проверку внутри соответствующих ВМ и выводят размер образа в байтах. В первой стадии Dockerfile Maven собирает Spring Boot JAR, а `jlink` создаёт компактный Java runtime. Финальная стадия содержит Alpine, runtime и JAR. [Команды работы с образами Minikube](https://minikube.sigs.k8s.io/docs/commands/image/)
 
-В первой стадии Dockerfile Maven собирает Spring Boot JAR, а `jlink` создаёт компактный Java runtime. Финальная стадия содержит Alpine, runtime и JAR. Ключ `--all` размещает образ в контейнерном runtime обоих узлов. Docker сообщает размер образа в байтах.
+### 3. Входящий трафик и Deployment
 
-### Входящий трафик и Deployment
+MetalLB назначает внешние IP службам приложения и Traefik в локальной сети VirtualBox между Windows и ВМ (host-only). Перед применением `k8s/metallb-virtualbox.yaml` проверяются адреса узлов и настройки DHCP:
 
-Пул MetalLB из `k8s/metallb-virtualbox.yaml` рассчитан на host-only сеть проверенного VirtualBox. Для другой подсети в манифесте указываются свободные адреса из её диапазона вне DHCP. При использовании `minikube tunnel` вместо MetalLB туннель должен работать до установки Traefik. В Windows добавление маршрута для туннеля может потребовать прав администратора.
+```powershell
+ks get nodes -o wide
+$vbox = 'C:\Program Files\Oracle\VirtualBox\VBoxManage.exe'
+& $vbox list hostonlyifs
+& $vbox list dhcpservers
+```
+
+В репозитории задан пул `192.168.59.80–192.168.59.81`. Если сеть отличается или эти адреса заняты, в `spec.addresses` объекта `IPAddressPool` указываются два свободных адреса из подсети ВМ вне DHCP. При использовании `minikube tunnel` вместо MetalLB туннель должен работать до установки Traefik. В Windows добавление маршрута для туннеля может потребовать прав администратора.
 
 ```powershell
 helm repo add metallb https://metallb.github.io/metallb
@@ -178,11 +215,14 @@ helm upgrade --install traefik traefik/traefik --version 42.4.1 -n ingress-syste
 ks apply -f k8s/app.yaml
 ks -n sentiment rollout status deployment/sentiment --timeout=180s
 ks -n sentiment get deployment,pods,svc,ingress,hpa
+ks -n sentiment get pods -l app=sentiment -o wide
 ```
+
+В колонке `NODE` отображается ВМ каждого пода. На проверенном стенде одна реплика выполнялась на управляющем узле, две — на рабочем. [Журнал развёртывания](evidence/deploy.log)
 
 При варианте с туннелем шаги установки MetalLB и применения его пула пропускаются. У Traefik и приложения проверяется назначение внешних IP, затем выполняются запросы из раздела проверки API.
 
-### Установка мониторинга
+### 4. Установка мониторинга
 
 ```powershell
 helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --version 93.4.1 -n monitoring --create-namespace -f k8s/helm-values.yaml --wait --timeout 12m
